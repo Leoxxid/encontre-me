@@ -25,3 +25,14 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+Gemfile.lock
+bin/bundle
+bin/rails
+bin/rake
+bin/setup
+bin/update
+bin/yarn
+db/schema.rb
+start.sh
+start_jobs.sh
