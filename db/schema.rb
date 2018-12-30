@@ -10,10 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_29_183506) do
+ActiveRecord::Schema.define(version: 2018_12_30_003754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "information_types", force: :cascade do |t|
+    t.string "description"
+    t.integer "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sugestions", force: :cascade do |t|
+    t.integer "flag"
+    t.bigint "user_id"
+    t.bigint "user_information_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sugestions_on_user_id"
+    t.index ["user_information_type_id"], name: "index_sugestions_on_user_information_type_id"
+  end
+
+  create_table "user_information_types", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "information_type_id"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["information_type_id"], name: "index_user_information_types_on_information_type_id"
+    t.index ["user_id"], name: "index_user_information_types_on_user_id"
+  end
+
+  create_table "user_informations", force: :cascade do |t|
+    t.string "description"
+    t.integer "flag"
+    t.bigint "user_information_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_information_type_id"], name: "index_user_informations_on_user_information_type_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -29,4 +65,9 @@ ActiveRecord::Schema.define(version: 2018_12_29_183506) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "sugestions", "user_information_types"
+  add_foreign_key "sugestions", "users"
+  add_foreign_key "user_information_types", "information_types"
+  add_foreign_key "user_information_types", "users"
+  add_foreign_key "user_informations", "user_information_types"
 end
