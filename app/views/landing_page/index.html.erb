@@ -11,13 +11,6 @@
   </head>
 
   <body>
-    <ul id="user-dropdown" class="dropdown-content">
-      <li><a href="/dashboard">Dashboard</a></li>
-      <li><a href="#">Perfil</a></li>
-      <li class="divider"></li>
-      <li><%= link_to('Sair', destroy_user_session_path, method: :delete) %></li>
-    </ul>
-
     <nav class="grey darken-3">
       <div class="nav-wrapper">
         <div class="container">
@@ -28,6 +21,12 @@
             <li><a href="#">Contato</a></li>
             <% if user_signed_in? %>
               <li><a class="dropdown-trigger" href="#" data-target="user-dropdown">Olá, <%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
+              <ul id="user-dropdown" class="dropdown-content">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Perfil</a></li>
+                <li class="divider"></li>
+                <li><%= link_to('Sair', destroy_user_session_path, method: :delete) %></li>
+              </ul>
             <% else %>
               <li><%= link_to 'Login', new_user_session_path %></li>
             <% end %>
@@ -40,7 +39,13 @@
       <li><a href="#">Sobre Nós</a></li>
       <li><a href="#">Contato</a></li>
       <% if user_signed_in? %>
-        <li><a class="dropdown-trigger" href="#" data-target="user-dropdown">Olá, <%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#" data-target="user-dropdown-mobile">Olá, <%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
+        <ul id="user-dropdown-mobile" class="dropdown-content">
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="#">Perfil</a></li>
+          <li class="divider"></li>
+          <li><%= link_to('Sair', destroy_user_session_path, method: :delete) %></li>
+        </ul>
       <% else %>
         <li><%= link_to 'Login', new_user_session_path %></li>
       <% end %>
