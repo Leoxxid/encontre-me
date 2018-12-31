@@ -6,15 +6,59 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'landing_page', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <p> Olá, <%= current_user.email %> </p>
-        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-    <% else %>
-      <p><%= link_to 'Login', new_user_session_path %></p> 
-    <% end %>
+    <nav class="grey darken-3">
+      <div class="nav-wrapper">
+        <div class="container">
+          <a href="#" class="brand-logo">Logo</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">Contato</a></li>
+            <% if user_signed_in? %>
+              <li><a class="dropdown-trigger" href="#" data-target="user-dropdown">Olá, <%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
+              <ul id="user-dropdown" class="dropdown-content">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Perfil</a></li>
+                <li class="divider"></li>
+                <li><%= link_to('Sair', destroy_user_session_path, method: :delete) %></li>
+              </ul>
+            <% else %>
+              <li><%= link_to 'Login', new_user_session_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="#">Sobre Nós</a></li>
+      <li><a href="#">Contato</a></li>
+      <% if user_signed_in? %>
+        <li><a class="dropdown-trigger" href="#" data-target="user-dropdown-mobile">Olá, <%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
+        <ul id="user-dropdown-mobile" class="dropdown-content">
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="#">Perfil</a></li>
+          <li class="divider"></li>
+          <li><%= link_to('Sair', destroy_user_session_path, method: :delete) %></li>
+        </ul>
+      <% else %>
+        <li><%= link_to 'Login', new_user_session_path %></li>
+      <% end %>
+    </ul>
+
+    <div class="row home">
+      <div class="center">
+        <strong><h3 class="title">Encontre novas amizades</h3></strong>
+        <h5 class="subtitle">Crie o seu perfil e encontre pessoas incríveis que tem tudo a ver com você!</h5>
+        <h5 class="subtitle2">Rápido, fácil e garantido <i class="material-icons home-icon">favorite</i></h5>
+        <%= link_to "Encontrar Agora", new_user_session_path, class: "waves-effect waves-light btn home-button" %>
+        
+      </div>
+    </div>
   </body>
 </html>

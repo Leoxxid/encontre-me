@@ -10,6 +10,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'materialize-sass'
 gem 'material_icons'
+gem 'serviceworker-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 # Use postgresql as the database for Active Record
