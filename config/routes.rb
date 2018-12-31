@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :sugestions
   resources :dashboard
   resources :information_types
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
   root 'landing_page#index'
 end
