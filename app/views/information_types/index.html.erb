@@ -1,2 +1,33 @@
-<h1>InformationTypes#index</h1>
-<p>Find me in app/views/information_types/index.html.erb</p>
+
+<div class="row">
+    <div class="col m8 offset-m2">
+            <div class="field">
+                   <p id="notice"><%= notice %></p>
+                    <h5>List Information Types</h5>
+                    <table>
+                        <thead>
+                          <tr>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th colspan="2"></th>
+                          </tr>
+                        </thead>
+                      
+                        <tbody>
+                          <% @information_types.each do |information_type| %>
+                            <tr>
+                              <td><%= information_type.description %></td>
+                              <td><%= information_type.active %></td>
+                              <td><%= link_to 'Show', information_type %></td>
+                              <td><%= link_to 'Edit', edit_information_type_path(information_type) %></td>
+                              <td><%= link_to 'Destroy', information_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                      <br>
+            </div>
+           <%= link_to 'New Information Type', new_information_type_path %>
+    </div>
+</div>
+

@@ -1,2 +1,12 @@
-<h1>InformationTypes#edit</h1>
-<p>Find me in app/views/information_types/edit.html.erb</p>
+<div class="row">
+        <div class="col m8 offset-m2">
+                <div class="field">
+                        <h5>Editing Information Types</h5>
+                </div>
+                <%= render 'information_types/shared/form', information_type: @information_type %>
+                <%= link_to 'Show', @information_type %> |
+                <%= link_to 'Back', information_types_path %>
+        </div>
+</div>
+    
+    
