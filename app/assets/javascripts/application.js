@@ -17,3 +17,7 @@
 //= require materialize-sprockets
 //= require_tree .
 //= require serviceworker-companion
+
+$(document).on('turbolinks:load', function() {
+  $('.dropdown-trigger').dropdown();
+});
