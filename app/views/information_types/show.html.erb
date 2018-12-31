@@ -1,2 +1,17 @@
-<h1>InformationTypes#show</h1>
-<p>Find me in app/views/information_types/show.html.erb</p>
+<div class="row">
+    <div class="col m8 offset-m2">
+            <div class="field">
+                    <p id="notice"><%= notice %></p>
+                    <h5>Show Information Types</h5>
+            </div>
+              <p>
+                <strong>Description:</strong>
+                <%= @information_type.description %>
+              </p>
+              
+              <%= link_to 'Edit', edit_information_type_path(@information_type) %> |
+              <%= link_to 'Back', information_types_path %>
+    </div>
+</div>
+
+

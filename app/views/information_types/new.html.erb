@@ -1,2 +1,11 @@
-<h1>InformationTypes#new</h1>
-<p>Find me in app/views/information_types/new.html.erb</p>
+<div class="row">
+    <div class="col m8 offset-m2">
+            <div class="field">
+                    <h5>New Information Types</h5>
+            </div>
+            <%= render 'information_types/shared/form', information_type: @information_type %>
+            <br />
+            <%= link_to 'Back', information_types_path %>
+    </div>
+</div>
+
