@@ -13,12 +13,21 @@
 //= require jquery
 //= require rails-ujs
 //= require activestorage
+//= require owlcarousel2/owl.carousel
 //= require turbolinks
 //= require materialize-sprockets
 //= require_tree .
 //= require serviceworker-companion
 
+
 $(document).on('turbolinks:load', function() {
   $('.dropdown-trigger').dropdown();
   $('.sidenav').sidenav();
+
+  $('.owl-carousel').owlCarousel({
+    items:1,
+    margin:10,
+    autoHeight:true
+  });
+
 });
