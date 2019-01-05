@@ -11,8 +11,15 @@ gem 'jquery-rails'
 gem 'materialize-sass'
 gem 'material_icons'
 gem 'serviceworker-rails'
-
 gem 'owlcarousel2'
+gem "cocoon"
+gem 'faker'
+gem 'simple_form'
+#tags
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+  gem 'rails-assets-chosen'
+end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

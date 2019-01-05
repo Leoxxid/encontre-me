@@ -1,61 +1,143 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+ <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %> 
+
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
+    <div class="chip">
+    <img src="/images/LMS_7167_2.jpg" alt="Contact Person">
+    Tiago Leal
+    <i class="close material-icons">close</i>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+  <div class="card">
+    <div class="card-tabs">
+      <ul class="tabs">
+        <li class="tab"><a class="active" href="#users">User</a></li>
+        <li class="tab"><a href="#change_account">Account</a></li>
+      </ul>
+    </div>
+    <div class="card-content lighten-4">
+      <div id="users" class="col s12">
+
+        <!-- ADD THIS -->
+        <div class="field">
+          <%= f.label :avatar %>
+          <%= f.file_field :avatar %>
+          <div class="row">
+            <div class="col m3 s4">
+              <img id="image_upload_preview" class="responsive-img" /><br>
+            </div>
+          </div>
+        </div>
+
+        <%
+=begin%>
+ <% if @user.avatar.blank %> 
+<%
+=end%>
+          <div class="row">
+              <div class="col m3 s4">
+                <%= link_to image_tag(@user.avatar, style:'width:50%'), user_session_path %>
+              </div>
+          </div> 
+        <%
+=begin%>
+ <% end %> 
+<%
+=end%>
+        <!-- / ADD THIS -->
+
+        <div class="field">
+          <%= f.label :first_name %><br />
+          <%= f.text_field :first_name, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :last_name %><br />
+          <%= f.text_field :last_name %>
+        </div>
+          
+        <div class="field">
+          <%= f.label :age %><br />
+          <%= f.text_field :age, type: "number"%>
+        </div>
+
+        <div class="field">
+          <%= f.label :description %><br />
+          <%= f.text_area :description, class:'materialize-textarea', size:'5x5'%>
+        </div>
+
+        <h4>Information Types</h4>
+        <div id="user_information_types">
+          <%= f.fields_for :user_information_types do |user_information_type| %>
+            <!-- COMENTÁRIO:
+              é uma exigencia também que os campos do seu nested esteja numa partial "nome_do_seu_nested_no_singular_fields"
+              no nosso caso _phone_fields.html.erb
+            -->
+            <%= render 'user_information_type_fields', f: user_information_type %>
+          <% end %>
+          <!-- COMENTÁRIO:
+            O link para adicionar dinamicamente os fields deve estar dentro de uma div .links
+          -->
+          <div class="links">
+            <!-- COMENTÁRIO: O link_to_add_association é um helper provido pela gem -->
+            <%= link_to_add_association 'add', f, :user_information_types, class: "addbutton btn waves-effect waves-light blue right white-text" %>
+            <br><br>
+          </div>
+        </div>
+
+         <div class="field">
+          <h1 class = "text-center">Interesses</h1>
+            
+              <%= f.input :tag_ids, as: :select, collection: Tag.order(:name), label_method: :name,  class: 'chosen-select' , input_html: {multiple: true} %>
+            
+        </div> 
+
+        <div class="field">
+          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Update", class:'btn waves-effect waves-light' %>
+        </div>
+      </div>
+
+      <div id="change_account" class="col s12">
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+      
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <% end %>
+        
+        <h3>Cancel my account</h3>
+
+        <p>Unhappy?
+          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, form_class:'btn waves-effect waves-light'  %>
+        </p><br>
+
+        <%= link_to "Back", :back, class:'btn waves-effect waves-light'  %>
+      </div>
+    </div>
   </div>
   
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.text_field :age, type: "number"%>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-      <%= f.button "Update", class:'btn waves-effect waves-light' %>
-      <% end %>
-  </div>
-
-  
-<h3>Cancel my account</h3>
-
-<p>Unhappy?
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, form_class:'btn waves-effect waves-light'  %>
-</p>
-
-<%= link_to "Back", :back, class:'btn waves-effect waves-light'  %>
