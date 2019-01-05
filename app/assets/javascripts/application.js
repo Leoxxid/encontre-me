@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require cocoon
 //= require rails-ujs
 //= require activestorage
 //= require owlcarousel2/owl.carousel
@@ -20,9 +21,17 @@
 //= require serviceworker-companion
 
 
+$('.addbutton').click(function(){
+  console.log("key");
+  $('select').formSelect();
+});
+
+
 $(document).on('turbolinks:load', function() {
   $('.dropdown-trigger').dropdown();
   $('.sidenav').sidenav();
+  $('.tabs').tabs();
+  $('select').formSelect();
 
   $('.owl-carousel').owlCarousel({
     items:1,
