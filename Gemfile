@@ -17,10 +17,12 @@ gem 'faker'
 gem 'simple_form'
 gem 'rails-i18n' 
 
+
 #tags
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
   gem 'rails-assets-chosen'
+  gem 'rails-assets-angular', '~> 1.6.0'
 end
 
 

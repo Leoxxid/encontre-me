@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="chatApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDbhC8v6mzYrhNOl3PH0m-15KkF7oPdPFI",
+        authDomain: "chatapp-5eca0.firebaseapp.com",
+        databaseURL: "https://chatapp-5eca0.firebaseio.com",
+        projectId: "chatapp-5eca0",
+        storageBucket: "chatapp-5eca0.appspot.com",
+        messagingSenderId: "456617518227"
+    };
+    firebase.initializeApp(config);
+    </script>
+</head>
+<body ng-controller="ChatController">
+    <br>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Chat</div>
+            <div class="panel-body">
+                <p ng-repeat="m in messages">{{m.message}} - {{m.date | date:'medium'}}</p>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Message here..." ng-model="messageText">
+                </div>
+                <button type="submit" class="btn btn-default" ng-click="send()">Send</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

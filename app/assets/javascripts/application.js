@@ -19,6 +19,7 @@
 //= require materialize-sprockets
 //= require_tree .
 //= require serviceworker-companion
+//= require angular
 
 $(document).on('turbolinks:load', function() {
   $('.dropdown-trigger').dropdown();
@@ -36,3 +37,18 @@ $(document).on('turbolinks:load', function() {
 $(document).on('nested-fields:load', function() {
   $('select').formSelect();
 });
+
+var app = angular.module('chatApp', ['firebase']);
+
+app.controller('ChatController', function($scope, $firebaseArray) {
+    var ref = firebase.database().ref().child('messages');
+    $scope.messages = $firebaseArray(ref);
+
+    $scope.send = function() {
+        $scope.messages.$add({
+            message: $scope.messageText,
+            date: Date.now()
+        })
+    }
+
+})

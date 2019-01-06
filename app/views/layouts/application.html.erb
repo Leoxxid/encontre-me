@@ -8,12 +8,23 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="/manifest.json" />
+     <link rel="manifest" href="/manifest.json" />
 <meta name="apple-mobile-web-app-capable" content="yes"></head>
 
   <body>
-    <div class="container">
-      <%= yield %>
-    </div>
+
+    <header>
+        <%= render "shared/navbar" %>
+    </header>
+
+      <main>
+	      <div class="container">
+	        <%= yield %>
+	      </div>
+	    </main>
+	 
+	    <footer>
+	      <%= render "shared/footer" %>
+	    </footer>
   </body>
 </html>

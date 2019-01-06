@@ -1,11 +1,13 @@
 <div class="col s8 m8">
         <div class="card">
             <div class="card-image">
-                <img src="https://materializecss.com/images/sample-1.jpg">
-                <span class="card-title">Card Title</span>
+                        <% if @user.avatar.attached? %> 
+                                <%= link_to image_tag(@user.avatar, style:'width:80%'), user_session_path %>
+                        <% end %> 
+                <span class="card-title"></span>
             </div>
             <div class="card-content">
-                    <h5>Sugestions</h5>
+                    <h5>Suggestions</h5>
                 <div class="card-action">
                         <div class="col s9 m9">
                                 <a href="#"> <i class="medium material-icons dp58">favorite_border</i></a>
@@ -15,12 +17,9 @@
                     </div>
             </div>
         </div>
+         <a href="/dashboard/show"><i class="medium material-icons dp48">chat</i></a>
 </div>
 
-<div class="col s6 m3">
-        <div>
-            Nome: Thiago Cardoso <br />
-            Age: 30 <br />
-            Email:
-        </div>
+<div class="col s6 m4">
+        <%= render 'dashboard/shared/information' %>
 </div>
