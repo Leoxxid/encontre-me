@@ -1,0 +1,35 @@
+<nav class="grey darken-3">
+    <div class="nav-wrapper">
+      <div class="container">
+        <a href="#" class="brand-logo">Encontre-me</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if user_signed_in? %>
+            <li><a class="dropdown-trigger" href="#" data-target="user-dropdown">Olá, <%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="user-dropdown" class="dropdown-content">
+              <li><a href="/dashboard">Dashboard</a></li>
+              <li><%= link_to 'Profile', edit_user_registration_path(current_user) %></li>
+              <li class="divider"></li>
+              <li><%= link_to('Sair', destroy_user_session_path, method: :delete) %></li>
+            </ul>
+          <% else %>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <% if user_signed_in? %>
+      <li><a class="dropdown-trigger" href="#" data-target="user-dropdown-mobile">Olá, <%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
+      <ul id="user-dropdown-mobile" class="dropdown-content">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><%= link_to 'Profile', edit_user_registration_path(current_user) %></li>
+        <li class="divider"></li>
+        <li><%= link_to('Sair', destroy_user_session_path, method: :delete) %></li>
+      </ul>
+    <% else %>
+      <li><%= link_to 'Login', new_user_session_path %></li>
+    <% end %>
+  </ul>
