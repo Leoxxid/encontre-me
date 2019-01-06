@@ -3,6 +3,7 @@ class RegistrationsController  < Devise::RegistrationsController
     
     def edit
         params[:tag] ? @users = User.tagged_with(params[:tag]) : @users = User.all
+        # @user = User.find(current_user.id)
         @user = User.find(current_user.id)
         @information_types = InformationType.all
     end

@@ -20,23 +20,19 @@
 //= require_tree .
 //= require serviceworker-companion
 
-
-$('.addbutton').click(function(){
-  console.log("key");
-  $('select').formSelect();
-});
-
-
 $(document).on('turbolinks:load', function() {
   $('.dropdown-trigger').dropdown();
   $('.sidenav').sidenav();
   $('.tabs').tabs();
-  $('select').formSelect();
-
+  // $('select').formSelect();
   $('.owl-carousel').owlCarousel({
     items:1,
     margin:10,
     autoHeight:true
   });
+});
 
+
+$(document).on('nested-fields:load', function() {
+  $('select').formSelect();
 });
