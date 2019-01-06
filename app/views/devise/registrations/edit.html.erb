@@ -1,26 +1,19 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2><%= translate 'activerecord.models.title'%></h2>
 
  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %> 
 
   <%= devise_error_messages! %>
 
-    <div class="chip">
-    <img src="/images/LMS_7167_2.jpg" alt="Contact Person">
-    Tiago Leal
-    <i class="close material-icons">close</i>
-  </div>
-
   <div class="card">
-    <div class="card-tabs">
+    <div class="card-tabs">   
       <ul class="tabs">
-        <li class="tab"><a class="active" href="#users">User</a></li>
-        <li class="tab"><a href="#change_account">Account</a></li>
+        <li class="tab"><a class="active" href="#users"><%= translate 'activerecord.models.profile'%></a></li>
+        <li class="tab"><a href="#change_account"><%= translate 'activerecord.models.account'%></a></li>
       </ul>
     </div>
+
     <div class="card-content lighten-4">
       <div id="users" class="col s12">
-
-        <!-- ADD THIS -->
         <div class="field">
           <%= f.label :avatar %>
           <%= f.file_field :avatar %>
@@ -31,22 +24,13 @@
           </div>
         </div>
 
-        <%
-=begin%>
- <% if @user.avatar.blank %> 
-<%
-=end%>
+       <% if @user.avatar.attached? %> 
           <div class="row">
               <div class="col m3 s4">
                 <%= link_to image_tag(@user.avatar, style:'width:50%'), user_session_path %>
               </div>
           </div> 
-        <%
-=begin%>
- <% end %> 
-<%
-=end%>
-        <!-- / ADD THIS -->
+        <% end %> 
 
         <div class="field">
           <%= f.label :first_name %><br />
@@ -65,33 +49,23 @@
 
         <div class="field">
           <%= f.label :description %><br />
-          <%= f.text_area :description, class:'materialize-textarea', size:'5x5'%>
+          <%= f.text_area :description, class:'materialize-textarea', size:'5x5' %>
         </div>
 
-        <h4>Information Types</h4>
+        <h4><%= translate 'activerecord.models.my_list'%></h4>
         <div id="user_information_types">
           <%= f.fields_for :user_information_types do |user_information_type| %>
-            <!-- COMENTÁRIO:
-              é uma exigencia também que os campos do seu nested esteja numa partial "nome_do_seu_nested_no_singular_fields"
-              no nosso caso _phone_fields.html.erb
-            -->
             <%= render 'user_information_type_fields', f: user_information_type %>
           <% end %>
-          <!-- COMENTÁRIO:
-            O link para adicionar dinamicamente os fields deve estar dentro de uma div .links
-          -->
           <div class="links">
-            <!-- COMENTÁRIO: O link_to_add_association é um helper provido pela gem -->
-            <%= link_to_add_association 'add', f, :user_information_types, class: "addbutton btn waves-effect waves-light blue right white-text" %>
+            <%= link_to_add_association "#{translate 'devise.shared.links.add'}", f, :user_information_types, id:"link_add", class: "btn waves-effect waves-light blue right white-text" %>
             <br><br>
           </div>
         </div>
 
          <div class="field">
-          <h1 class = "text-center">Interesses</h1>
-            
-              <%= f.input :tag_ids, as: :select, collection: Tag.order(:name), label_method: :name,  class: 'chosen-select' , input_html: {multiple: true} %>
-            
+          <h1 class = "text-center"><%= translate 'activerecord.models.interests'%></h1>
+            <%= f.input :tag_ids, as: :select, collection: Tag.order(:name), label_method: :name,  class: 'chosen-select' , input_html: {multiple: true} %>
         </div> 
 
         <div class="field">
@@ -100,7 +74,7 @@
         </div>
 
         <div class="actions">
-          <%= f.submit "Update", class:'btn waves-effect waves-light' %>
+          <%= f.submit "#{translate 'devise.registrations.edit.update'}", class:'btn waves-effect waves-light' %>
         </div>
       </div>
 
@@ -130,13 +104,13 @@
 
         <% end %>
         
-        <h3>Cancel my account</h3>
+        <h3><%= translate 'devise.registrations.edit.cancel_my_account'%></h3>
 
-        <p>Unhappy?
-          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, form_class:'btn waves-effect waves-light'  %>
+        <p><%= translate 'devise.registrations.edit.unhappy'%>
+          <%= button_to "#{translate 'devise.registrations.edit.cancel_my_account'}", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, form_class:'btn waves-effect waves-light'  %>
         </p><br>
 
-        <%= link_to "Back", :back, class:'btn waves-effect waves-light'  %>
+        <%= link_to "#{translate 'devise.shared.links.back'}", :back, class:'btn waves-effect waves-light'  %>
       </div>
     </div>
   </div>

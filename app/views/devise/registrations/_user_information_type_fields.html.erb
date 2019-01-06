@@ -1,27 +1,11 @@
-<!-- COMENTÁRIO:
-  Dentro da partial todo conteúdo deve estar dentro de uma div .nested-fields
--->
 <div class="nested-fields">
-
-  <div class="input-field">
-      <%
-=begin%>
- <%= f.select :information_type_id, @information_types.collect { |p| [ p.description, p.id ] }, include_blank: true, prompt: "Select a category", class:'input-field'  %> 
-<%
-=end%>
-
-  <%= f.collection_select :information_type_id, @information_types, :id, :name_with_initial, prompt: "Select a category" %>   
-
+  <div class="input-field col s6">
+    <%= f.collection_select :information_type_id, @information_types, :id, :name_with_initial, prompt: "Select a category" %>   
   </div>  
-
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>   
-
-  <!-- COMENTÁRIO:
-    link_to_remove_association é o helper que o cocoon nos fornece para deletar algum nested
-  -->
-  <%= link_to_remove_association "remove", f %>
+  <%= link_to_remove_association "#{translate 'devise.shared.links.remove'}", f %>
   <br><br><br>
 </div>
