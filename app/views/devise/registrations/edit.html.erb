@@ -1,11 +1,11 @@
 <h2><%= translate 'activerecord.models.title'%></h2>
 
- <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %> 
+ <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
   <%= devise_error_messages! %>
 
   <div class="card">
-    <div class="card-tabs">   
+    <div class="card-tabs">
       <ul class="tabs">
         <li class="tab"><a class="active" href="#users"><%= translate 'activerecord.models.profile'%></a></li>
         <li class="tab"><a href="#change_account"><%= translate 'activerecord.models.account'%></a></li>
@@ -24,13 +24,13 @@
           </div>
         </div>
 
-       <% if @user.avatar.attached? %> 
+       <% if @user.avatar.attached? %>
           <div class="row">
               <div class="col m3 s4">
                 <%= link_to image_tag(@user.avatar, style:'width:50%'), user_session_path %>
               </div>
-          </div> 
-        <% end %> 
+          </div>
+        <% end %>
 
         <div class="field">
           <%= f.label :first_name %><br />
@@ -41,7 +41,7 @@
           <%= f.label :last_name %><br />
           <%= f.text_field :last_name %>
         </div>
-          
+
         <div class="field">
           <%= f.label :age %><br />
           <%= f.text_field :age, type: "number"%>
@@ -66,11 +66,6 @@
          <div class="field">
           <h1 class = "text-center"><%= translate 'activerecord.models.interests'%></h1>
             <%= f.input :tag_ids, as: :select, collection: Tag.order(:name), label_method: :name,  class: 'chosen-select' , input_html: {multiple: true} %>
-        </div> 
-
-        <div class="field">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-          <%= f.password_field :current_password, autocomplete: "current-password" %>
         </div>
 
         <div class="actions">
@@ -83,17 +78,22 @@
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
-      
+
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
 
         <div class="field">
-          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.label :current_password %> <i>(precisamos de sua senha atual para realizar estas mudanças)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %> <i>(deixe em branco caso não queira alterar isto)</i><br />
           <%= f.password_field :password, autocomplete: "new-password" %>
           <% if @minimum_password_length %>
             <br />
-            <em><%= @minimum_password_length %> characters minimum</em>
+            <em><%= @minimum_password_length %> minimo de caracteres</em>
           <% end %>
         </div>
 
@@ -103,7 +103,7 @@
         </div>
 
         <% end %>
-        
+
         <h3><%= translate 'devise.registrations.edit.cancel_my_account'%></h3>
 
         <p><%= translate 'devise.registrations.edit.unhappy'%>
@@ -114,4 +114,3 @@
       </div>
     </div>
   </div>
-  
