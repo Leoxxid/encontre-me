@@ -5,5 +5,10 @@
         <b>Email:</b> <%= @user.email %><br />
 
         <b>Complemento:</b><br />
+        <% if !@user_information_types.nil? %>
+         <% @user_information_types.each do | user_information_type| %>
+            <%= user_information_type.description %><br/>
+         <% end %>
+         <% end %>
         <b>Interreses:</b> <%= raw @user.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p><br />
 </div>
