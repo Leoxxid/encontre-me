@@ -1,7 +1,8 @@
 class InformationType < ApplicationRecord
   # validates :description, presence: true
+  
   has_many :user_information_types, dependent: :destroy
-  # belongs_to :user, required: false
+  has_many :users, through: :user_information_types
 
   def name_with_initial
     "#{description}"

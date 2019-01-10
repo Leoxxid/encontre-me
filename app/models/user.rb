@@ -4,8 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :information_types, dependent: :destroy
+ 
   has_many :user_information_types, inverse_of: :user, dependent: :destroy
+  # has_many :information_types, dependent: :destroy
+  has_many :information_types, through: :user_information_types, dependent: :destroy
   has_many :sugestions, dependent: :destroy
   has_one_attached :avatar
   has_many :taggings
