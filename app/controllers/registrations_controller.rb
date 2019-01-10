@@ -19,7 +19,7 @@ class RegistrationsController  < Devise::RegistrationsController
 
         puts params
         params.require(:user).permit(:first_name, :last_name, :description, :age, :email, :password, :password_confirmation, :current_password, :avatar, :tag_list, :tag, { tag_ids: [] }, :tag_ids,
-        user_information_types_attributes: [:user_id, :information_type_id, :description, :_destroy])
+        user_information_types_attributes: [:user_id, :information_type_id, :description])
     end
 
 
