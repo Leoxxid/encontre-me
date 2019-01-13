@@ -17,8 +17,8 @@
           <a href="#" class="brand-logo">Logo</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Sobre Nós</a></li>
-            <li><a href="#">Contato</a></li>
+            <li><a href="#"><%= translate 'helpers.landing_page.about'%></a></li>
+            <li><a href="#"><%= translate 'helpers.landing_page.contact'%></a></li>
             <% if user_signed_in? %>
               <li><a class="dropdown-trigger" href="#" data-target="user-dropdown">Olá, <%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
               <ul id="user-dropdown" class="dropdown-content">

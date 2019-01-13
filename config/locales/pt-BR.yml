@@ -146,6 +146,24 @@ pt-BR:
         one: 'Não foi possível gravar %{model}: 1 erro'
         other: 'Não foi possível gravar %{model}: %{count} erros'
   helpers:
+    landing_page:
+      about: "Sobre Nós"
+      contact: "Contato"
+    suggestions:
+      suggestion: "Sugestão"
+      contact: "Contato"
+      more: "Ver mais"
+      profile: "Perfil"
+    dashboard:  
+      accept_suggestion: "Sugestões Aceitas"
+      profile_picture: "Imagem do Perfil"
+      name: "Nome"
+      age: "Idade"
+      description: "Descrição"
+      email: "Email"
+      complement: "Complemento"
+      interests: "Interesses"
+      send: "Enviar"
     select:
       prompt: Por favor selecione
     submit:

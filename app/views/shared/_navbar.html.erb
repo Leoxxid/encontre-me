@@ -8,7 +8,8 @@
             <li><a class="dropdown-trigger" href="#" data-target="user-dropdown">Olá, <%= current_user.email %><i class="material-icons right">arrow_drop_down</i></a></li>
             <ul id="user-dropdown" class="dropdown-content">
               <li><a href="/dashboard">Dashboard</a></li>
-              <li><%= link_to 'Profile', edit_user_registration_path(current_user) %></li>
+              <li><%= link_to "#{translate 'helpers.suggestions.profile'}", edit_user_registration_path(current_user) %></li>
+              <li><a href="/dashboard/show" target="_blank">Chat</a></li>
               <li class="divider"></li>
               <li><%= link_to('Sair', destroy_user_session_path, method: :delete) %></li>
             </ul>
