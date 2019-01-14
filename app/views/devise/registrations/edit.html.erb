@@ -1,6 +1,6 @@
 <h2><%= translate 'activerecord.models.title'%></h2>
 
- <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= simple_form_for(current_user, url: update_user_informations_path, html: { method: :put }) do |f| %>
 
   <%= devise_error_messages! %>
 
@@ -53,7 +53,7 @@
         </div>
 
         <h4><%= translate 'activerecord.models.my_list'%></h4>
-        
+
         <div id="user_information_types">
           <%= f.fields_for :user_information_types do |user_information_type| %>
             <%= render 'user_information_type_fields', f: user_information_type %>
@@ -73,7 +73,8 @@
           <%= f.submit "#{translate 'devise.registrations.edit.update'}", class:'btn waves-effect waves-light' %>
         </div>
       </div>
-
+  <% end %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <div id="change_account" class="col s12">
         <div class="field">
           <%= f.label :email %><br />
@@ -102,6 +103,10 @@
         <div class="field">
           <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "#{translate 'devise.registrations.edit.update'}", class:'btn waves-effect waves-light' %>
         </div>
 
         <% end %>

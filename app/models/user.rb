@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
- 
+
   has_many :user_information_types, inverse_of: :user, dependent: :destroy
   # has_many :information_types, dependent: :destroy
   has_many :information_types, through: :user_information_types, dependent: :destroy
@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :taggings
   has_many :tags, through: :taggings
 
-  accepts_nested_attributes_for :user_information_types, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :user_information_types, allow_destroy: true
 
   def self.tagged_with(name)
     Tag.find_by!(name: name).users
