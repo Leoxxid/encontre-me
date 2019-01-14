@@ -33,26 +33,27 @@
         <% end %>
 
         <div class="field">
-          <%= f.label :first_name %><br />
-          <%= f.text_field :first_name, autofocus: true %>
+          <%= f.label :first_name %><label>*</label><br />
+          <%= f.text_field :first_name, autofocus: true, class:"validate", required:"required" %>
         </div>
 
         <div class="field">
-          <%= f.label :last_name %><br />
-          <%= f.text_field :last_name %>
+          <%= f.label :last_name %><label>*</label><br />
+          <%= f.text_field :last_name, class:"validate", required:"required" %>
         </div>
 
         <div class="field">
-          <%= f.label :age %><br />
-          <%= f.text_field :age, type: "number"%>
+          <%= f.label :age %><label>*</label><br />
+          <%= f.text_field :age, type: "number",  pattern:"[0-9]", class:"validate", required:"required" %>
         </div>
 
         <div class="field">
-          <%= f.label :description %><br />
-          <%= f.text_area :description, class:'materialize-textarea', size:'5x5' %>
+          <%= f.label :description %><label>*</label><br />
+          <%= f.text_area :description, class:'materialize-textarea validate', size:'5x5', required:"required" %>
         </div>
 
         <h4><%= translate 'activerecord.models.my_list'%></h4>
+        
         <div id="user_information_types">
           <%= f.fields_for :user_information_types do |user_information_type| %>
             <%= render 'user_information_type_fields', f: user_information_type %>
@@ -76,7 +77,8 @@
       <div id="change_account" class="col s12">
         <div class="field">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"validate" %>
+          <span class="helper-text" data-error="<%= translate 'devise.registrations.edit.wrong'%>" data-success="<%= translate 'devise.registrations.edit.right'%>"></span>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

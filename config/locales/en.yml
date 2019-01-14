@@ -31,3 +31,24 @@
 
 en:
   hello: "Hello world"
+
+  helpers:
+    landing_page:
+      about: "About us"
+      contact: "Contact"
+    suggestions:
+      suggestion: "Suggestion"
+      contact: "Contact"
+      more: "More"
+      profile: "Profile"
+    dashboard:  
+      accept_suggestion: "Accept Suggestions"
+      profile_picture: "Profile Picture"
+      name: "Name"
+      age: "Age"
+      description: "Description"
+      email: "Email"
+      complement: "Complement"
+      interests: "interests"
+      send: "Send"
+      

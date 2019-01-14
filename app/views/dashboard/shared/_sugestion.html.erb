@@ -1,36 +1,40 @@
-<h5>Suggestions</h5>
-<div class="owl-carousel owl-theme">
-        <% @users.each do |user| %>
-            <div class="item">
-                <div class="card blue-grey darken-1">
-                <div class="card horizontal">
-                    <div class="card-image">
-                                <% if user.avatar.attached? %> 
-                                      <%= link_to image_tag(user.avatar, style:'width:90%'), user_session_path %>
-                              <% end %> 
-                    </div>
-                    <div class="card-stacked">
-                    <div class="card-content">
-                            <div class="col s9 m10">
-                                    <div>
-                                            <b>Nome:</b> <%= user.first_name %> <%= user.last_name %><br />
-                                            <b>Age:</b> <%= user.age  %> <br />
-                                            <b>Description:</b> <%= user.description %><br />
-                                            <b>Email:</b> <%= user.email %><br />
-                                    
-                                            <b>Complemento:</b><br />
-                                            <b>Interreses:</b> <%= raw user.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p><br />
-                                    </div>
-                            </div>
-                    </div>
-
-                    <div class="card-action">
-                        <td><%= link_to 'Ver mais', sugestion_path(user.id) %></td>
-                    </div>
-                    </div>
+<div class="col s12 m11">
+  <h5><%= translate 'helpers.suggestions.suggestion'%></h5>
+  <div class="owl-carousel owl-theme">
+  <% @users.each do |user| %>
+      <div class="item">
+          <div class="card blue-grey darken-1">
+          <div class="card horizontal">
+              <div class="card-image">
+                  <% if user.avatar.attached? %> 
+                    <%= link_to image_tag(user.avatar, style:'width:90%'), user_session_path %>
+                <% end %> 
+              </div>
+              <div class="card-stacked">
+              <div class="card-content">
+                <div class="col s9 m10">
+                  <div>
+                    <b><%= translate 'helpers.dashboard.name'%>:</b> <%= user.first_name %> <%= user.last_name %><br />
+                    <b><%= translate 'helpers.dashboard.age'%>:</b> <%= user.age  %> <br />
+                    <b><%= translate 'helpers.dashboard.description'%>:</b> <%= user.description %><br />
+                    <b><%= translate 'helpers.dashboard.email'%>:</b> <%= user.email %><br />
+                    <b><%= translate 'helpers.dashboard.complement'%>:</b><br />
+                    <% if !@users_informations.nil? %>
+                      <% @users_informations.each do | information | %>
+                        <%= information.description %> - <%= @array_descricao[information.id] %><br/>
+                      <% end %>        
+                    <% end %>
+                    <b><%= translate 'helpers.dashboard.interests'%>:</b> <%= raw user.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p><br />
+                  </div>
                 </div>
-            </div>
-        </div>
-        <% end %>
+              </div>
+              <div class="card-action">
+                <td><%= link_to "#{translate 'helpers.suggestions.more'}", sugestion_path(user.id) %></td>
+              </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <% end %>
 </div>
 

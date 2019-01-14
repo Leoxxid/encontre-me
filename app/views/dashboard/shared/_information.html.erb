@@ -1,22 +1,14 @@
 <div>
-        <b>Nome:</b> <%= @user.first_name %> <%= @user.last_name %><br />
-        <b>Age:</b> <%= @user.age  %> <br />
-        <b>Description:</b> <%= @user.description %><br />
-        <b>Email:</b> <%= @user.email %><br />
+    <b><%= translate 'helpers.dashboard.name'%>:</b> <%= @user.first_name %> <%= @user.last_name %><br />
+    <b><%= translate 'helpers.dashboard.age'%>:</b> <%= @user.age  %> <br />
+    <b><%= translate 'helpers.dashboard.description'%>:</b> <%= @user.description %><br />
+    <b><%= translate 'helpers.dashboard.email'%>:</b> <%= @user.email %><br />
 
-        <b>Complemento:</b><br />
-        <% if !@users_informations.nil? %>
-            <% @users_informations.each do | information | %>
-              <%= information.description %> - <%= @array_descricao[information.id] %><br/>
-            <% end %>        
-         <%
-=begin%>
- <% @user_information_types.each do | user_information_type| %>
-            <%= user_information_type.description %><br/>
-         <% end %> 
-<%
-=end%>
-
-        <% end %>
-        <b>Interreses:</b> <%= raw @user.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p><br />
+    <b><%= translate 'helpers.dashboard.complement'%>:</b><br />
+    <% if !@users_informations.nil? %>
+      <% @users_informations.each do | information | %>
+        <%= information.description %> - <%= @array_descricao[information.id] %><br/>
+      <% end %>        
+    <% end %>
+    <b><%= translate 'helpers.dashboard.interests'%>:</b> <%= raw @user.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></p><br />
 </div>

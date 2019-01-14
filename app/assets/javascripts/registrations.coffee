@@ -3,5 +3,3 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-# $(document).on "nested-fields:load", ->
-#     $('select').formSelect();
